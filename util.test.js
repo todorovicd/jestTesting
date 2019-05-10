@@ -1,16 +1,19 @@
 const puppeteer = require("puppeteer");
 const { generateText, checkAndGenerate } = require("./util");
 
+// unit testing as single function
 test("should output name and age", () => {
   const text = generateText("Max", 29);
   expect(text).toBe("Max (29 years old)");
 });
 
+// integration testing a function with a callback
 test("should generate a valid text output", () => {
   const text = checkAndGenerate("Max", 29);
   expect(text).toBe("Max (29 years old)");
 });
 
+// E2E testing (all the steps) with puppeteer
 test("should create an element with text and correct class", async () => {
   const browser = await puppeteer.launch({
     headless: true
